@@ -44,7 +44,7 @@ function handleKeyDown(key) {
 
 function analyzeGuess() {
     if(!words.includes(guesses[currentGuess])) {
-        alert(`Word not in list: ${guesses[currentGuess].toUpperCase()}`);
+        showAlert(`Word not in list: <span class="word">${guesses[currentGuess].toUpperCase()}</span>`);
         return;
     }
 
@@ -110,9 +110,9 @@ function analyzeGuess() {
 
 function gameOver(win) {
     if(win) {
-        alert("YOU WIN");
+        showAlert(`<h1>🏆</h1>You Win!`);
     } else {
-        alert(`YOU LOSE\nThe word was: ${currentWord.toUpperCase()}`);
+        showAlert(`<h1>💥</h1>You Lose!\n\nThe word was: <span class="word link" onclick="getDefinition('${currentWord}')">${currentWord.toUpperCase()}</span>`, 7000);
     }
 }
 
@@ -126,4 +126,18 @@ function drawBoard() {
         }
         $(".board").append(row);
     }
+}
+
+function showAlert(text, duration = 3500) {
+    $(".alert").html(text);
+    $(".alert").removeClass("hide-alert");
+    $(".alert").addClass("show-alert");
+
+    window.setTimeout(() => {
+        $(".alert").addClass("hide-alert");
+    }, duration);
+}
+
+function getDefinition(word) {
+    window.open(`https://www.merriam-webster.com/dictionary/${word}`, "_blank");
 }

@@ -52,6 +52,66 @@ body {
     text-transform: uppercase;
 }
 
+.alert {
+    position: absolute;
+    background-color: #eee;
+    font-size: clamp(0.5rem, min(6vw, calc(6vh - 30px)), 3rem);
+    padding: 24px;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0;
+    font-weight: normal;
+    z-index: 1;
+}
+
+.show-alert {
+    animation-name: show-anim;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show-anim {
+    0%   { 
+        margin-top: -200px;
+    }
+    10% { 
+        margin-top: 60px;
+        opacity: 1;
+    }
+    100% { 
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+
+.hide-alert {
+    opacity: 1;
+    margin-top: 60px;
+
+    animation-name: hide-anim;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hide-anim {
+    100% { 
+        margin-top: -200px;
+        opacity: 0;
+    }
+}
+
+.word {
+    border: 1px solid #000;
+    padding: 8px;
+    font-weight: 600;
+}
+
+.link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .boing {
     border-color: #666;
     animation-name: boing;

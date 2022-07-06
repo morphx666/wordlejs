@@ -3,6 +3,7 @@ const wordLength = currentWord.length;
 const possibleGuesses = 6;
 const guesses = [];
 let currentGuess = 0;
+let gameRunning = true;
 
 $(document).ready(() => {
     $(document).keydown(function(e) {
@@ -13,6 +14,7 @@ $(document).ready(() => {
 });
 
 function handleKeyDown(key) {
+    if(!gameRunning) return;
     let guess = guesses[currentGuess];
 
     switch(key) {
@@ -109,10 +111,11 @@ function analyzeGuess() {
 }
 
 function gameOver(win) {
+    gameRunning = false;
     if(win) {
-        showAlert(`<h1>🏆</h1>You Win!`);
+        showAlert(`<h1>🏆</h1>You Win!`, 4000);
     } else {
-        showAlert(`<h1>💥</h1>You Lose!\n\nThe word was: <span class="word link" onclick="getDefinition('${currentWord}')">${currentWord.toUpperCase()}</span>`, 7000);
+        showAlert(`<h1>💥</h1>You Lose!\n\nThe word was: <span class="word link" onclick="getDefinition('${currentWord}')">${currentWord.toUpperCase()}</span>`, 8000);
     }
 }
 

@@ -1,0 +1,158 @@
+/* @font-face {
+    font-family: 'Clear Sans';
+    src: url("fonts/clear-sans.regular.ttf");
+} */
+
+body {
+    background-color: #111;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 100%;
+    font-weight: 600;
+
+    margin: 0;
+    padding: 0;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    margin-top: 30px;
+    width: fit-content;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.5rem, min(10vw, calc(10vh - 30px)), 3rem);
+    color: #fff;
+    width: min(15vw, calc(15vh - 40px));
+    height: min(15vw, calc(15vh - 40px));
+    border: 1px solid #444;
+    max-width: 80px;
+    max-height: 80px;
+    text-transform: uppercase;
+}
+
+.boing {
+    border-color: #666;
+    animation-name: boing;
+    animation-duration: 0.2s;
+    transition-timing-function: linear;
+}
+
+@keyframes boing {
+    0%   { transform: scale(1.0); }
+    50%  { transform: scale(1.1); }
+    100% { transform: scale(1.0); }
+}
+
+.green {
+    animation-name: flip-green;
+    animation-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flip-green {
+    0%   { transform: rotateX(0deg); }
+    50%  { 
+        transform: rotateX(90deg);
+        background-color: transparent;
+    }
+    100% { 
+        transform: rotateX(0deg);
+
+        border: 1px solid rgb(83, 141, 78);
+        background-color: rgb(83, 141, 78);
+    }
+}
+
+.yellow {
+    animation-name: flip-yellow;
+    animation-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flip-yellow {
+    0%   { transform: rotateX(0deg); }
+    50%  { 
+        transform: rotateX(90deg);
+        background-color: transparent;
+    }
+    100% { 
+        transform: rotateX(0deg);
+
+        border: 1px solid rgb(181, 159, 59);
+        background-color: rgb(181, 159, 59);
+    }
+}
+
+.gray {
+    animation-name: flip-gray;
+    animation-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flip-gray {
+    0%   { transform: rotateX(0deg); }
+    50%  { 
+        transform: rotateX(90deg);
+        background-color: transparent;
+    }
+    100% { 
+        transform: rotateX(0deg);
+
+        border: 1px solid rgb(58, 58, 60);
+        background-color: rgb(58, 58, 60);
+    }
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    position: absolute;
+    bottom: 8px;
+}
+
+.krow {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.key {
+    color: #fff;
+    background-color: rgb(129, 131, 132);
+    font-size: min(14px, 4vw);
+    padding: min(20px, 2vw) min(15px, 1.5vw);
+    border: 1px solid rgb(129, 131, 132);
+    border-radius: 4px;
+
+    cursor: pointer;
+    user-select: none;
+    text-transform: uppercase;
+}

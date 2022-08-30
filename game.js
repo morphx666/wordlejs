@@ -4,6 +4,8 @@ const possibleGuesses = 6;
 const guesses = [];
 let currentGuess = 0;
 let gameRunning = true;
+let alertHnd = 0;
+let ignoreKeypresses = false;
 
 $(document).ready(() => {
     $(document).keydown(function(e) {
@@ -14,7 +16,7 @@ $(document).ready(() => {
 });
 
 function handleKeyDown(key) {
-    if(!gameRunning) return;
+    if(!gameRunning || ignoreKeypresses) return;
     let guess = guesses[currentGuess];
 
     switch(key) {
@@ -50,6 +52,7 @@ function analyzeGuess() {
         return;
     }
 
+    ignoreKeypresses = true;
     const setKeys = [];
     for(let i = 0; i < wordLength; i++) {
         const cell = $($(".cell")[currentGuess * wordLength + i]);
@@ -104,6 +107,7 @@ function analyzeGuess() {
                             currentGuess++;
                         }
                     }
+                    ignoreKeypresses = false;
                 }, 120 * wordLength);
             }
         }, 100 * i);
@@ -132,12 +136,15 @@ function drawBoard() {
 }
 
 function showAlert(text, duration = 3500) {
+    if(alertHnd != 0) window.clearTimeout(alertHnd);
+    
     $(".alert").html(text);
     $(".alert").removeClass("hide-alert");
     $(".alert").addClass("show-alert");
 
-    window.setTimeout(() => {
+    alertHnd = window.setTimeout(() => {
         $(".alert").addClass("hide-alert");
+        alertHnd = 0;
     }, duration);
 }
 

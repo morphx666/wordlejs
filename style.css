@@ -55,13 +55,18 @@ body {
 .alert {
     position: absolute;
     background-color: #eee;
-    font-size: clamp(0.5rem, min(6vw, calc(6vh - 30px)), 3rem);
+    font-size: clamp(1rem, min(6vw, calc(6vh - 30px)), 3rem);
     padding: 24px;
     text-align: center;
     border-radius: 10px;
     opacity: 0;
     font-weight: normal;
     z-index: 1;
+    box-shadow: 0 0 8px #999;
+}
+
+.alert h1 {
+    text-shadow: 0 0 10px #666;
 }
 
 .show-alert {
@@ -101,7 +106,8 @@ body {
 }
 
 .word {
-    border: 1px solid #000;
+    border: 1px solid #666;
+    border-radius: 6px;
     padding: 8px;
     font-weight: 600;
 }
